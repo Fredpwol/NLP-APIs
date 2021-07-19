@@ -39,7 +39,7 @@ def generate_response(msg_history, new_message:str ):
         new_msg_history = encoded_message
 
     output_tensor = model.generate(new_msg_history, max_length=1000, pad_token_id=tokenizer.eos_token_id)
-    tokenized_output = tokenizer.decode(output_tensor[:, new_msg_history.shape[-1]:][0] , skip_special_tokens=True)
+    output = tokenizer.decode(output_tensor[:, new_msg_history.shape[-1]:][0] , skip_special_tokens=True)
 
-    return new_msg_history, tokenized_output
+    return new_msg_history, output
     
