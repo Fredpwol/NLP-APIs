@@ -26,7 +26,7 @@ def predict_sentiment():
         return jsonify(status=ERROR, message=str(e)), 400
 
 
-@app.route("/auto-response")
+@app.route("/generate-response", methods=["POST"])
 def get_response():
     try:
         msg = request.get_json()["message"]
