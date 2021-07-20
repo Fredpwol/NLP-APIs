@@ -33,6 +33,20 @@ The response will be a json http response like this
 }
 ```
 Where angry is a probability the message had an angry or bad sentiment, and happy means a positive or good sentiment.
+<b>`/register`</b>
+This is used for creating a use account which will be used for sending messages
+```json
+{
+    "username": "sam"
+}
+```
+The response will be a json http response like this
+```json
+{
+    "uid": 1
+}
+```
+The uid is the id of the user which will be used for sending messages to the /generate-response endpoint
 
 <b>`/generate-response`</b>
 For getting automatic response from a user based on the conversation history, it takes in POST request with a JSON payload containing user id and a message like this.
