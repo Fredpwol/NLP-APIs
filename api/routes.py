@@ -37,23 +37,23 @@ def register_user():
 
 @app.route("/generate-response", methods=["POST"])
 def get_response():
-    # try:
-    msg = request.get_json()["message"]
-    uid = request.get_json()["uid"]
-    user = User.query.get(uid)
-    if user is None:
-        return jsonify(status=ERROR, message=f"No user found with {uid} id"), 400
-    messages = list(map(lambda msg: msg.message, user.messages))
-    print(messages)
-    output = generate_response(messages, msg)
-    new_message = Message(message=msg, sender=uid)
-    db.session.add(new_message)
-    db.session.commit()
-    response = {
-        "response" : output,
-        "status": OK
-    }
-    return jsonify(response), 200
-    # except Exception as e:
-    #     print(e)
-    #     return jsonify(status=ERROR, message=str(e)), 400
+    try:
+        msg = request.get_json()["message"]
+        uid = request.get_json()["uid"]
+        user = User.query.get(uid)
+        if user is None:
+            return jsonify(status=ERROR, message=f"No user found with {uid} id"), 400
+        messages = list(map(lambda msg: msg.message, user.messages))
+        print(messages)
+        output = generate_response(messages, msg)
+        new_message = Message(message=msg, sender=uid)
+        db.session.add(new_message)
+        db.session.commit()
+        response = {
+            "response" : output,
+            "status": OK
+        }
+        return jsonify(response), 200
+    except Exception as e:
+        print(e)
+        return jsonify(status=ERROR, message=str(e)), 400
