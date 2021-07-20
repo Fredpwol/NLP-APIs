@@ -33,6 +33,7 @@ The response will be a json http response like this
 }
 ```
 Where angry is a probability the message had an angry or bad sentiment, and happy means a positive or good sentiment.
+
 <b>`/register`</b>
 This is used for creating a use account which will be used for sending messages
 ```json
