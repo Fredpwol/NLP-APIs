@@ -4,7 +4,9 @@ from api.utils import generate_response
 
 from flask import jsonify, request
 
-
+@app.route("/")
+def index():
+    return "GET STARTED USING NLP APIs", 200
 
 @app.route("/predict-sentiment", methods=["POST"])
 def predict_sentiment():
